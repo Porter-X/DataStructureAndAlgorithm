@@ -23,7 +23,9 @@ int main()
 	}
 	printf("%p \n",H);
 	list_show(H);
-
+	printf("reverse :");
+	list_reverse(H);
+	list_show(H);
 	p = list_get(H, 2);
 	if (p !=NULL)
 		printf("value:%d\n",p->data);

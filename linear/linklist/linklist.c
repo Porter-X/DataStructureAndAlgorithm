@@ -117,3 +117,23 @@ linklist list_free(linklist H)
 	return H;
 }
 
+int list_reverse(linklist H)
+{
+	linklist p;
+	linklist q;
+	if (H == NULL)
+		return -1;
+	p = H->next;
+	H->next = p;
+	p = p->next;
+	H->next->next = NULL;
+	while (p != NULL)
+	{
+		q = p->next;
+		p->next = H->next;
+		H->next = p;
+		p = q;
+	}	
+	
+	return 0;
+}

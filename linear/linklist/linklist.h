@@ -12,3 +12,4 @@ linklist list_get(linklist H, int pos);
 int list_show(linklist H);
 int list_delete(linklist H, int pos);
 linklist list_free(linklist H);
+int list_reverse(linklist H);
