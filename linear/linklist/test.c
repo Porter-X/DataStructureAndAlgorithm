@@ -6,6 +6,7 @@ int main()
 {
 	linklist H;
 	int value;
+	int max;
 	linklist p;
 	H = list_create();
 	if (H == NULL)
@@ -23,6 +24,10 @@ int main()
 	}
 	printf("%p \n",H);
 	list_show(H);
+	p = list_adjmax(H, &max);
+	if (p != NULL)
+		printf("adjmax :%d\n",max);
+	
 	printf("reverse :");
 	list_reverse(H);
 	list_show(H);

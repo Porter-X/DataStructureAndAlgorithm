@@ -123,17 +123,89 @@ int list_reverse(linklist H)
 	linklist q;
 	if (H == NULL)
 		return -1;
-	p = H->next;
-	H->next = p;
-	p = p->next;
+	p = H->next->next;
 	H->next->next = NULL;
 	while (p != NULL)
 	{
-		q = p->next;
-		p->next = H->next;
-		H->next = p;
-		p = q;
+		//q is to save p->next		
+//		q = p->next;
+//		H->next = p;
+//		p = q;
+		//q is to save p
+		q = p;
+		p = p->next;
+		q->next = H->next;
+		H->next =q;
 	}	
 	
 	return 0;
+}
+
+
+linklist list_adjmax(linklist H, data_t *value)
+{
+	linklist p;
+	linklist q;
+	linklist temp;
+	int max = 0;
+	if (H == NULL)
+		return NULL;
+	p = H->next;
+	q = H->next->next;
+	if (H->next ==NULL || H->next->next == NULL)
+		return NULL;
+	while (q != NULL)//what if two nodes in the list,it's q,not q->next
+	{
+	if ( p->data + q->data > max)
+	{
+		max = p->data + q->data;
+		temp = p;
+		printf("max: %d\n",max);
+	}
+	p = p->next;
+	q = q->next;
+	}
+	*value = max;//pointer 
+	return temp;
+}
+
+int list_merge(linklist H1, linklist H2)
+{
+	linklist p;
+	linklist q;
+	linklist r;
+
+	if (H1 == NULL || H2 == NULL)
+		return -1;
+
+	p = H1->next;
+	q = H2->next;
+	r = H1;
+	while (p != NULL && q != NULL)
+	{
+		if (p->data <= q->data)
+		{
+			r->next = p;
+			p = p->next;
+			r = r->next;
+			r->next = NULL;
+
+		}
+		else
+		{
+			r->next = q;
+			q = q->next;
+			r = r->next;
+			r->next = NULL;
+		}
+	}
+	printf("list_merge\n");
+	
+	if (p == NULL)
+		r->next = q;
+	else
+		r->next = p;
+	return 0;
+
+
 }

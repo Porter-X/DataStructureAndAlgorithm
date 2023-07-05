@@ -13,3 +13,4 @@ int list_show(linklist H);
 int list_delete(linklist H, int pos);
 linklist list_free(linklist H);
 int list_reverse(linklist H);
+linklist list_adjmax(linklist H, data_t *value);
