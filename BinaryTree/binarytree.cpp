@@ -12,7 +12,8 @@ bitree *bitree_create()
 {
     bitree *root;
     char ch;
-    scanf("%c",&ch);
+    //scanf("%c",&ch);
+    cin>>ch;
     if ('#' == ch)//无后继树标记
         return NULL;    
     root = (bitree *)malloc(sizeof(bitree));
