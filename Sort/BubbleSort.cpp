@@ -13,12 +13,45 @@ void swap(int *a, int *b)
 void BubbleSort(int *arr, int n)
 {
 
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n - 1; i++)//每循环一次将最小值放开头
     {
         for (int j = i + 1; j < n; j++)
         {
             if (arr[i] > arr[j])
                 swap(&arr[i], &arr[j]);
+        }
+    }
+}
+
+void BubbleSort2(int *arr, int n)
+{
+    for (int i = 0; i < n - 1; i++)//循环一次最大值放最后
+    {
+        for (int j = 0; j < n - 1 - i; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void BubbleSort3(int *arr, int n)
+{
+    //升序
+    for (int i = 0; i < n - 1; i++)//每循环一个i 最大值放最后
+    {
+        for (int j = 0; j < n - 1 - i; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j + 1];
+                arr[j + 1] = arr[j];
+                arr[j] = temp;
+            }
         }
     }
 }
@@ -37,7 +70,7 @@ int main(int argc, char const *argv[])
     for (int i = 0; i < n; i++)
         printf("%d ",arr[i]);
     puts("");
-    BubbleSort(arr, n);
+    BubbleSort3(arr, n);
     //排序后
     for (int i = 0; i < n; i++)
         printf("%d ",arr[i]);

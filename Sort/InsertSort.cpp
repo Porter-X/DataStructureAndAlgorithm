@@ -40,12 +40,37 @@ void InsertSort(int arr[], int n)
             }
         }
 }
+
+void insertSort(int arr[], int n)
+{
+    //ÉıĞò
+    for (int i = 1; i < n; i++)
+    {
+        int key = arr[i];
+        for(int j = 0; j < i; j++)
+        {
+            if (key < arr[j])
+            {
+                for (int k = i; k > j; k--)
+                {
+                    arr[k] = arr[k - 1];//ÒÆ¶¯ÔªËØ
+                }
+                arr[j] = key;
+            }
+
+        }
+        
+    }
+}
+
+
+
 int main(int argc, char const *argv[])
 {
-    int array[N] = {5,3,2,1,4};
+    int array[N] = {5,3,2,1,4};//3 5 2 1 4 //2 3 5 1 4 // 1 2 3 5 4
     int n = sizeof(array)/sizeof(array[0]);
 
-    InsertionSort(array, n);
+    insertSort(array, n);
     for (int i = 0; i < N; ++i)
         cout<<array[i]<<" ";
     return 0;
