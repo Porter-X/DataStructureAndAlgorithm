@@ -28,6 +28,7 @@ bool isPalindrome(int x){
 
 int main(int argc, char const *argv[])
 {
+    
     printf("Ret = %d\n",isPalindrome(121));
 
     return 0;
