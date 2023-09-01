@@ -1,89 +1,43 @@
-#include <stdio.h>
-#include <stdlib.h>
+ #include <stdio.h>
 #include <stdbool.h>
-
-bool isValid(char * s){
-    char *p = s;
-
-    while (*p != '\0')
+ bool isMatch(char * p, int *stack, int *top)
     {
-        if ( *p == '(')
+        switch (*p)
         {
-            p++;
-            if (*p == ']' || *p == '}')//if  (*p != ')')
-            {
-                return false;
-            }
-            else if (*p == ')')
-            {
-                char *temp = p - 1;
-                if (*temp != '(')
-                    return false;
-            }
+            case ')':
+                return stack[(*top)--] == '(';//true or false
+            case ']':
+                return stack[(*top)--] == '[';
+            case '}':
+                return stack[(*top)--] == '{';
+            default :
+                return false;                                        
         }
-        else if ( *p == '{')
-        {
-             p++;
-            if  (*p == ']' || *p == ')')
-            {
-                return false;
-            }
-        }
-        else if ( *p == '[')
-        {
-             p++;
-            if  (*p == ')' || *p == '}')
-            {
-                return false;
-            }
-        }
-
-        else if (*p == '}')
-        {
-            char *temp = p - 1;
-            if (*temp != '{')
-                return false;
-        }
-        else if (*p == ']')
-        {
-            char *temp = p - 1;
-            if (*temp != '[')
-                return false;
-        }        
     }
 
-    return true;
-}
-
-
-int notMatch(char par, char* stack, int stackTop)
+bool isValid(char * s)
 {
-    switch(par)
-    {
-        case ']':
-            return stack[top]
-    }
-}
-
-bool isValid(char * s){
-    int length = strlen(s);
-    char *stack = (char *)malloc(sizeof(int) * length);
-    int top = 0;
-    if (length % 2 == 1)
+    int stack[10000];
+    int top = -1;
+    if (strlen(s) % 2 == 1 || (*s == ')' || *s == ']' || *s == '}'))//????? ????????????
         return false;
-    for (int i = 0; i < length; i++)
+    
+    while (*s != '\0')
     {
-        char temp = s[i];
-        if (s[i] == '(' || s[i] == '[' || s[i] == '{')//ÓÒÀ¨ºÅ
+        if (*s == '(' || *s == '[' || *s == '{')//?????
         {
-            stack[top++] = s[i];
+            stack[++top] = *s;
         }
-        else if (s[i] == ')' || s[i] == ']' || s[i] == '}')//×óÀ¨ºÅ
+        else if (*s == ')' || *s == ']' || *s == '}')//???????
         {
-            if (top == 0 || notMatch(temp, stack, top))
-                return 0;
+           //?????
+            if (top == -1 || !isMatch(s, stack, &top))
+                return false;
         }
+        s++;
     }
-
-    return true;
+    if (top == -1)//??????
+        return true;
+     else
+        return false;
 }
