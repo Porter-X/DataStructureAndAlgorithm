@@ -1,3 +1,4 @@
+#include <stdio.h>
 /**
  * struct ListNode {
  *	int val;
@@ -13,7 +14,7 @@
  */
 struct ListNode* ReverseList(struct ListNode* head ) {
     // write code here
-    struct ListNode dummy;
+/*     struct ListNode dummy;
     struct ListNode* p = head;
     while (p->next != NULL)
     {
@@ -33,5 +34,17 @@ struct ListNode* ReverseList(struct ListNode* head ) {
         temp1 = head;
         temp2 = head->next; 
     }
-    return NULL;
+    return NULL; */
+    struct ListNode* pre = NULL;
+    struct ListNode* cur = head;
+    struct ListNode* next = NULL;
+    while(cur)
+    {
+        next = cur->next; //±£´ænext
+        cur->next = pre;  //¸ü¸Änext
+        pre = cur;        //ÇÐ»»
+        cur = next;       //
+    }
+
+    return pre;
 }
